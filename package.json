@@ -10,14 +10,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pikoshimame/template.git"
+        "url": "git+https://github.com/pikoshimame/vocamap.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/pikoshimame/template/issues"
+        "url": "https://github.com/pikoshimame/vocamap/issues"
     },
-    "homepage": "https://github.com/pikoshimame/template#readme",
+    "homepage": "https://github.com/pikoshimame/vocamap#readme",
     "devDependencies": {
         "babel-core": "^6.26.0",
         "babel-eslint": "^7.2.3",
