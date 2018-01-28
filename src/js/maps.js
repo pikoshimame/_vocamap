@@ -8,6 +8,7 @@ export default class Maps {
         this.maps = maps;
         this.map = new this.maps.Map(element, Constants.MAP_OPTS);
         this.markerSets = [];
+        this.openInfoWindow = new this.maps.InfoWindow();
     }
     setMarkerSets() {
         fetch(Constants.DATA_URL)
@@ -28,7 +29,8 @@ export default class Maps {
                         + `<p class="infoWindow__text">${anchorify(String(element[1]).replace(/\r?\n/g, '<br>'), { target: '_blank' })}</p></section>`);
                     markerSet.marker.setMap(this.map);
                     markerSet.marker.addListener('click', () => {
-                        markerSet.infoWindow.open(this.map, markerSet.marker);
+                        this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
+                        this.openInfoWindow.open(this.map, markerSet.marker);
                     });
                     if (!this.markerSets.some((set) => { return set === markerSet; })) {
                         this.markerSets.push(markerSet);
