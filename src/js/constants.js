@@ -82,9 +82,13 @@ const MAP_OPTS = {
         }
     ]
 };
+const DATA_URL = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.SHEETS_ID}/values/data!A:D?key=${process.env.API_KEY}`;
 
 export default class Constants {
     static get MAP_OPTS() {
         return MAP_OPTS;
+    }
+    static get DATA_URL() {
+        return DATA_URL;
     }
 }
