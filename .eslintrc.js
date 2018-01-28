@@ -8,5 +8,8 @@ module.exports = {
     "rules": {
         "comma-dangle": "off",
         "indent": ["error", 4]
+    },
+    "globals": {
+        "google": true
     }
 }
