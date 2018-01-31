@@ -37,6 +37,7 @@
     },
     "dependencies": {
         "anchorify": "^1.0.2",
+        "node-js-marker-clusterer": "^1.0.0",
         "normalize.css": "^7.0.0",
         "whatwg-fetch": "^2.0.3"
     }
