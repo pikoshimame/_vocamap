@@ -1,6 +1,8 @@
 import 'whatwg-fetch';
 import twitter from 'twitter-text';
 import MarkerClusterer from 'node-js-marker-clusterer';
+import Vue from 'vue';
+import InfoWindow from '../components/info-window.vue';
 import Constants from './constants';
 import MarkerSet from './marker-set';
 
@@ -40,8 +42,18 @@ export default class Maps {
                         + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${twitter.htmlEscape(element[0])}</h2>`
                         + `<p class="infoWindow__text">${twitter.autoLink(twitter.htmlEscape(element[1]).replace(/\r?\n/g, '<br>'), { targetBlank: true })}</p></section>`);
                     markerSet.marker.addListener('click', () => {
-                        this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
+                        // this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
+                        this.openInfoWindow.setContent('<div id="infoWindow">');
                         this.openInfoWindow.open(this.map, markerSet.marker);
+                        new Vue({
+                            el: '#infoWindow',
+                            components: { InfoWindow },
+                            template: '<info-window :title="title" :text="text" />',
+                            data: {
+                                title: element[0],
+                                text: element[1]
+                            }
+                        });
                     });
                     if (!this.markerSets.some((set) => { return set === markerSet; })) {
                         this.markerSets.push(markerSet);

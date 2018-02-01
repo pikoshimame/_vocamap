@@ -39,8 +39,18 @@ module.exports = {
         filename: './js/app.js'
     },
 
+    resolve: {
+        alias: {
+            vue$: 'vue/dist/vue.esm.js'
+        }
+    },
+
     module: {
         rules: [
+            {
+                test: /\.vue$/,
+                use: 'vue-loader'
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,

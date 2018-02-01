@@ -9,6 +9,7 @@ module.exports = {
         "arrow-body-style": "off",
         "comma-dangle": "off",
         "indent": ["error", 4],
+        "no-new": "off",
         "no-underscore-dangle": "off"
     },
     "globals": {
