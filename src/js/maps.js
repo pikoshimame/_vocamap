@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import anchorify from 'anchorify';
+import twitter from 'twitter-text';
 import MarkerClusterer from 'node-js-marker-clusterer';
 import Constants from './constants';
 import MarkerSet from './marker-set';
@@ -42,8 +42,8 @@ export default class Maps {
                     let content = markerSet.infoWindow.getContent();
                     if (!content) { content = ''; }
                     markerSet.infoWindow.setContent(`${content}`
-                        + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${element[0]}</h2>`
-                        + `<p class="infoWindow__text">${anchorify(String(element[1]).replace(/\r?\n/g, '<br>'), { target: '_blank' })}</p></section>`);
+                        + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${twitter.htmlEscape(element[0])}</h2>`
+                        + `<p class="infoWindow__text">${twitter.autoLink(twitter.htmlEscape(element[1]).replace(/\r?\n/g, '<br>'), { targetBlank: true })}</p></section>`);
                     markerSet.marker.addListener('click', () => {
                         this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
                         this.openInfoWindow.open(this.map, markerSet.marker);
