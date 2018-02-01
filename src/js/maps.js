@@ -4,11 +4,6 @@ import MarkerClusterer from 'node-js-marker-clusterer';
 import Constants from './constants';
 import MarkerSet from './marker-set';
 
-const getGoogleClusterInlineSvg = (color) => {
-    const encoded = window.btoa(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-100 -100 200 200"><defs><g id="a" transform="rotate(45)"><path d="M0 47A47 47 0 0 0 47 0L62 0A62 62 0 0 1 0 62Z" fill-opacity="0.5"/></g></defs><g fill="${color}"><circle r="42"/><use xlink:href="#a"/><g transform="rotate(120)"><use xlink:href="#a"/></g><g transform="rotate(240)"><use xlink:href="#a"/></g></g></svg>`);
-    return (`data:image/svg+xml;base64,${encoded}`);
-};
-
 export default class Maps {
     constructor(maps, element) {
         this.maps = maps;
@@ -20,7 +15,7 @@ export default class Maps {
             {
                 width: 50,
                 height: 50,
-                url: getGoogleClusterInlineSvg('#FC5651'),
+                url: Constants.getGoogleClusterInlineSvg('#FC5651'),
                 textColor: '#5E1312',
                 textSize: 14
             }
