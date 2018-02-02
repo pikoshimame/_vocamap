@@ -1,17 +1,17 @@
 import 'whatwg-fetch';
-import twitter from 'twitter-text';
 import MarkerClusterer from 'node-js-marker-clusterer';
 import Vue from 'vue';
 import InfoWindow from '../components/info-window.vue';
 import Constants from './constants';
 import MarkerSet from './marker-set';
+import Info from './info';
 
 export default class Maps {
     constructor(maps, element) {
         this.maps = maps;
         this.map = new this.maps.Map(element, Constants.MAP_OPTS);
         this.markerSets = [];
-        this.openInfoWindow = new this.maps.InfoWindow();
+        this.infoWindow = new this.maps.InfoWindow();
         this.markerClusterer = new MarkerClusterer(this.map);
         this.markerClusterer.setStyles([
             {
@@ -36,23 +36,15 @@ export default class Maps {
                         lat: Number(element[2]),
                         lng: Number(element[3])
                     }));
-                    let content = markerSet.infoWindow.getContent();
-                    if (!content) { content = ''; }
-                    markerSet.infoWindow.setContent(`${content}`
-                        + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${twitter.htmlEscape(element[0])}</h2>`
-                        + `<p class="infoWindow__text">${twitter.autoLink(twitter.htmlEscape(element[1]).replace(/\r?\n/g, '<br>'), { targetBlank: true })}</p></section>`);
+                    markerSet.addInfo(new Info(element[0], element[1]));
                     markerSet.marker.addListener('click', () => {
-                        // this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
-                        this.openInfoWindow.setContent('<div id="infoWindow">');
-                        this.openInfoWindow.open(this.map, markerSet.marker);
+                        this.infoWindow.setContent('<div id="infoWindow">');
+                        this.infoWindow.open(this.map, markerSet.marker);
                         new Vue({
                             el: '#infoWindow',
                             components: { InfoWindow },
-                            template: '<info-window :title="title" :text="text" />',
-                            data: {
-                                title: element[0],
-                                text: element[1]
-                            }
+                            template: '<info-window :infos="infos" />',
+                            data: { infos: markerSet.infos }
                         });
                     });
                     if (!this.markerSets.some((set) => { return set === markerSet; })) {
@@ -76,8 +68,7 @@ export default class Maps {
             return false;
         })) {
             markerSet = new MarkerSet({
-                marker: new this.maps.Marker({ position, animation: this.maps.Animation.DROP }),
-                infoWindow: new this.maps.InfoWindow()
+                marker: new this.maps.Marker({ position, animation: this.maps.Animation.DROP })
             });
         }
         return markerSet;

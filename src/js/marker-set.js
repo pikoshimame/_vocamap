@@ -1,12 +1,16 @@
 export default class MarkerSet {
-    constructor({ marker, infoWindow }) {
+    constructor({ marker, info }) {
         this._marker = marker;
-        this._infoWindow = infoWindow;
+        this._infos = [];
+        if (info) this._infos.push(info);
     }
     get marker() {
         return this._marker;
     }
-    get infoWindow() {
-        return this._infoWindow;
+    get infos() {
+        return this._infos;
+    }
+    addInfo(info) {
+        this._infos.push(info);
     }
 }
