@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 require('dotenv').config();
 
@@ -21,7 +22,11 @@ const DefinePluginConfig = new webpack.DefinePlugin({
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
     inject: (process.env.NODE_ENV !== 'production'),
-    key: process.env.API_KEY
+    key: process.env.API_KEY,
+    isProduction: (process.env.NODE_ENV === 'production')
+});
+const ScriptExtHtmlWebpackPluginConfig = new ScriptExtHtmlWebpackPlugin({
+    defaultAttribute: 'defer'
 });
 const UglifyjsWebpackPluginConfig = new UglifyjsWebpackPlugin();
 
@@ -60,6 +65,7 @@ module.exports = {
 
     plugins: [
         HTMLWebpackPluginConfig,
+        ScriptExtHtmlWebpackPluginConfig,
         DefinePluginConfig,
         UglifyjsWebpackPluginConfig
     ]
