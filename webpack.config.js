@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 require('dotenv').config();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -20,18 +20,16 @@ const DefinePluginConfig = new webpack.DefinePlugin({
 });
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
-    inject: 'body',
+    inject: (process.env.NODE_ENV !== 'production'),
     key: process.env.API_KEY
 });
-const ScriptExtHtmlWebpackPluginConfig = new ScriptExtHtmlWebpackPlugin({
-    inline: 'app'
-});
+const UglifyjsWebpackPluginConfig = new UglifyjsWebpackPlugin();
 
 module.exports = {
     context: path.join(__dirname, '/src'),
 
     entry: {
-        js: './js/entry.js'
+        app: './js/entry.js'
     },
 
     output: {
@@ -62,10 +60,13 @@ module.exports = {
 
     plugins: [
         HTMLWebpackPluginConfig,
-        ScriptExtHtmlWebpackPluginConfig,
-        DefinePluginConfig
+        DefinePluginConfig,
+        UglifyjsWebpackPluginConfig
     ]
 };
 if (process.env.NODE_ENV !== 'production') {
     module.exports.devtool = 'inline-source-map';
+} else {
+    module.exports.entry = { docs: './js/entry.js' };
+    module.exports.output.filename = '../[name]/js/app.js';
 }
