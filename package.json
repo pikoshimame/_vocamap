@@ -36,9 +36,9 @@
         "webpack-dev-server": "^2.7.1"
     },
     "dependencies": {
-        "anchorify": "^1.0.2",
         "node-js-marker-clusterer": "^1.0.0",
         "normalize.css": "^7.0.0",
+        "twitter-text": "^2.0.4-rc1",
         "whatwg-fetch": "^2.0.3"
     }
 }

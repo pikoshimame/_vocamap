@@ -1,13 +1,8 @@
 import 'whatwg-fetch';
-import anchorify from 'anchorify';
+import twitter from 'twitter-text';
 import MarkerClusterer from 'node-js-marker-clusterer';
 import Constants from './constants';
 import MarkerSet from './marker-set';
-
-const getGoogleClusterInlineSvg = (color) => {
-    const encoded = window.btoa(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-100 -100 200 200"><defs><g id="a" transform="rotate(45)"><path d="M0 47A47 47 0 0 0 47 0L62 0A62 62 0 0 1 0 62Z" fill-opacity="0.5"/></g></defs><g fill="${color}"><circle r="42"/><use xlink:href="#a"/><g transform="rotate(120)"><use xlink:href="#a"/></g><g transform="rotate(240)"><use xlink:href="#a"/></g></g></svg>`);
-    return (`data:image/svg+xml;base64,${encoded}`);
-};
 
 export default class Maps {
     constructor(maps, element) {
@@ -20,7 +15,7 @@ export default class Maps {
             {
                 width: 50,
                 height: 50,
-                url: getGoogleClusterInlineSvg('#FC5651'),
+                url: Constants.getGoogleClusterInlineSvg('#FC5651'),
                 textColor: '#5E1312',
                 textSize: 14
             }
@@ -42,8 +37,8 @@ export default class Maps {
                     let content = markerSet.infoWindow.getContent();
                     if (!content) { content = ''; }
                     markerSet.infoWindow.setContent(`${content}`
-                        + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${element[0]}</h2>`
-                        + `<p class="infoWindow__text">${anchorify(String(element[1]).replace(/\r?\n/g, '<br>'), { target: '_blank' })}</p></section>`);
+                        + `<section class="infoWindow__contents"><h2 class="infoWindow__title">${twitter.htmlEscape(element[0])}</h2>`
+                        + `<p class="infoWindow__text">${twitter.autoLink(twitter.htmlEscape(element[1]).replace(/\r?\n/g, '<br>'), { targetBlank: true })}</p></section>`);
                     markerSet.marker.addListener('click', () => {
                         this.openInfoWindow.setContent(markerSet.infoWindow.getContent());
                         this.openInfoWindow.open(this.map, markerSet.marker);
