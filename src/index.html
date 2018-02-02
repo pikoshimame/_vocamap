@@ -21,7 +21,8 @@
             <small class="footer__copy">&copy; 2018 VOCALOID CLUB EVENT MAP</small>
         </footer>
     </section>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.key %>&libraries=geometry&callback=initMap"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.key %>&libraries=geometry"></script>
+    <% if (htmlWebpackPlugin.options.isProduction) { %><script defer src="https://pikoshimame.github.io/vocamap/js/app.js"></script><% } %>
 </body>
 
 </html>
