@@ -1,19 +1,23 @@
 <template>
     <gmap-map class="map"
-              :zoom="zoom"
-              :center="center"
-              :options="options">
-        <gmap-marker :key="index"
-                     v-for="(set, index) in markerSets"
-                     :position="set.position"
-                     :animation="set.animation"
-                     :clickable="true"
-                     @click="open(set)">
-            <gmap-info-window :opened="set.opened"
-                              @closeclick="close(set)">
-                <vmap-info :infos="set.infos" />
-            </gmap-info-window>
-        </gmap-marker>
+              :zoom="map.zoom"
+              :center="map.center"
+              :options="map.options"
+              @zoom_changed="zoomChanged()">
+        <gmap-cluster :gridSize="cluster.gridSize"
+                      :styles="cluster.styles">
+            <gmap-marker :key="index"
+                         v-for="(set, index) in marker.sets"
+                         :position="set.position"
+                         :animation="set.animation"
+                         :clickable="true"
+                         @click="open(set)">
+                <gmap-info-window :opened="set.opened"
+                                  @closeclick="close(set)">
+                    <vmap-info :infos="set.infos" />
+                </gmap-info-window>
+            </gmap-marker>
+        </gmap-cluster>
     </gmap-map>
 </template>
 
@@ -36,20 +40,39 @@ export default {
     name: 'VmapMap',
     components: { VmapInfo },
     data() {
-        return Object.assign({
-            markerSets: [],
-            openedSet: null
-        }, Constants.MAP_OPTS);
+        return {
+            map: Constants.MAP_OPTS,
+            cluster: {
+                gridSize: 10,
+                styles: [
+                    {
+                        width: 50,
+                        height: 50,
+                        url: Constants.getGoogleClusterInlineSvg('#FC5651'),
+                        textColor: '#5E1312',
+                        textSize: 14
+                    }
+                ]
+            },
+            marker: {
+                sets: [],
+                openedSet: null
+            }
+        }
     },
     methods: {
         open(set) {
-            if (this.openedSet) { this.openedSet.opened = false; }
+            if (this.marker.openedSet) { this.marker.openedSet.opened = false; }
             set.opened = true;
-            this.openedSet = set;
+            this.marker.openedSet = set;
         },
         close(set) {
             set.opened = false;
-            this.opened = null;
+            this.marker.openedSet = null;
+        },
+        zoomChanged() {
+            if (this.marker.openedSet) { this.marker.openedSet.opened = false; }
+            this.marker.openedSet = null;
         },
         getMarkers() {
             fetch(Constants.DATA_URL)
@@ -63,18 +86,17 @@ export default {
                             { lat: Number(element[2]), lng: Number(element[3]) },
                         ));
                         markerSet.addInfo({ title: element[0], text: element[1]});
-                        if (!this.markerSets.some(set => {
+                        if (!this.marker.sets.some(set => {
                             return set === markerSet;
                         })) {
-                            this.markerSets.push(markerSet);
-                            // this.markerClusterer.addMarker(markerSet.marker);
+                            this.marker.sets.push(markerSet);
                         }
                     });
                 });
         },
         getMarkerSet(position) {
             let markerSet;
-            if (!this.markerSets.some(set => {
+            if (!this.marker.sets.some(set => {
                 const distance = google.maps.geometry.spherical.computeDistanceBetween(
                     set.position,
                     position
