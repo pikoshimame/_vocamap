@@ -1,12 +1,10 @@
-import 'normalize.css';
-import '../css/style.css';
-import Maps from './maps';
+import Vue from 'vue';
+import App from '../components/App';
 
-(() => {
-    const maps = new Maps(google.maps, document.getElementById('map'));
-    try {
-        maps.setMarkerSets();
-    } catch (e) {
-        console.error('Marker setting failed.');
-    }
-})();
+Vue.config.productionTip = false;
+
+new Vue({
+    el: '#app',
+    components: { App },
+    template: '<App/>'
+});
