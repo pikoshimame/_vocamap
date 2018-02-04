@@ -1,9 +1,8 @@
 <template>
     <div id="app">
-        <section class="main">
+        <section>
             <vmap-header />
-            <vmap-map />
-            <vmap-register />
+            <router-view></router-view>
             <vmap-footer />
         </section>
     </div>
@@ -12,13 +11,12 @@
 <script>
 import 'normalize.css';
 import VmapHeader from './Header';
-import VmapMap from './Map';
-import VmapRegister from './Register';
+import VmapTop from './Top';
 import VmapFooter from './Footer';
 
 export default {
     name: 'App',
-    components: { VmapHeader, VmapMap, VmapRegister, VmapFooter }
+    components: { VmapHeader, VmapTop, VmapFooter }
 };
 </script>
 

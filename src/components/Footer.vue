@@ -1,6 +1,6 @@
 <template>
-    <footer>
-        <small>&copy; 2018 VOCALOID CLUB EVENT MAP</small>
+    <footer class="footer">
+        <small class="copy">&copy; 2018 VOCALOID CLUB EVENT MAP</small>
     </footer>
 </template>
 
@@ -11,13 +11,13 @@ export default {
 </script>
 
 <style scoped>
-footer {
+.footer {
     text-align: center;
     background-color: #373b3e;
     color: #fff;
     padding: 24px 0;
 }
-small {
+.copy {
     font-size: 12px;
 }
 </style>

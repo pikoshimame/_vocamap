@@ -1,36 +1,24 @@
 <template>
-    <div>
-        <a href="#">イベントを登録する</a>
-    </div>
+    <vmap-button class="register">
+        <router-link to="about">イベントを登録する</router-link>
+    </vmap-button>
 </template>
 
 <script>
+import VmapButton from './Button';
+
 export default {
-    name: 'VmapRegister'
+    name: 'VmapRegister',
+    components: { VmapButton }
 };
 </script>
 
 <style scoped>
-div {
-    text-align: center;
+.register {
     background-color: #137a7f;
     padding: 50px 0;
 }
-a {
-    display: block;
-    background-color: #373b3e;
-    border-radius: 25px;
-    color: #fffeec;
-    font-size: 16px;
-    text-decoration: none;
-    line-height: 50px;
-    width: 250px;
-    height: 50px;
+.register >>> a {
     margin: 0 auto;
-    box-shadow: inset 0 -3px 0 0 #2c2f32;
-    transition: 0.3s background-color;
-}
-a:hover {
-    background-color: #494f52;
 }
 </style>

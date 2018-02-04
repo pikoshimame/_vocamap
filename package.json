@@ -44,6 +44,7 @@
         "normalize.css": "^7.0.0",
         "twitter-text": "^2.0.4-rc1",
         "vue": "^2.5.13",
+        "vue-router": "^3.0.1",
         "vue2-google-maps": "^0.8.4",
         "whatwg-fetch": "^2.0.3"
     }
