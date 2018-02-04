@@ -1,12 +1,20 @@
-import 'normalize.css';
-import '../css/style.css';
-import Maps from './maps';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from '../components/App';
+import routes from './routes';
 
-(() => {
-    const maps = new Maps(google.maps, document.getElementById('map'));
-    try {
-        maps.setMarkerSets();
-    } catch (e) {
-        console.error('Marker setting failed.');
-    }
-})();
+Vue.config.productionTip = false;
+Vue.use(VueRouter);
+
+new Vue({
+    el: '#app',
+    components: { App },
+    template: '<App/>',
+    router: new VueRouter({
+        mode: 'history',
+        routes,
+        scrollBehavior(to, from, savedPosition) {
+            return { x: 0, y: 0 };
+        }
+    })
+});

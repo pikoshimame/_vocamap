@@ -10,18 +10,7 @@
 </head>
 
 <body>
-    <section class="main">
-        <header class="header">
-            <h1 class="header__title"><b>VOCALOID</b> CLUB&nbsp;EVENT MAP</h1>
-        </header>
-        <div class="map">
-            <div class="map__contents" id="map"></div>
-        </div>
-        <footer class="footer">
-            <small class="footer__copy">&copy; 2018 VOCALOID CLUB EVENT MAP</small>
-        </footer>
-    </section>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= htmlWebpackPlugin.options.key %>&libraries=geometry"></script>
+    <div id="app"></div>
     <% if (htmlWebpackPlugin.options.isProduction) { %><script defer src="https://pikoshimame.github.io/vocamap/js/app.js"></script><% } %>
 </body>
 
