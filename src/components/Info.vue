@@ -1,8 +1,8 @@
 <template>
     <div>
         <section class="info" v-for="info in infos" :key="info.title">
-            <h2 class="title" v-html="convertTitle(info.title)"></h2>
-            <p class="text" v-html="convertText(info.text)"></p>
+            <h2 class="title" v-html="convertTitle(info.title)" />
+            <p class="text" v-html="convertText(info.text)" />
         </section>
     </div>
 </template>
