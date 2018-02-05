@@ -1,17 +1,25 @@
 <template>
-    <div class="btn">
+    <div :class="className">
         <slot></slot>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'VmapButton'
+    name: 'VmapButton',
+    props: ['btnStyle'],
+    computed: {
+        className() {
+            const classNames = ['default'];
+            if(this.btnStyle) { classNames.push(this.btnStyle) };
+            return classNames;
+        }
+    }
 };
 </script>
 
 <style scoped>
-.btn >>> a {
+.default >>> a {
     display: block;
     background-color: #373b3e;
     border-radius: 25px;
@@ -25,14 +33,14 @@ export default {
     box-shadow: inset 0 -3px 0 0 #2c2f32;
     transition: 0.3s background-color;
 }
-.btn >>> a:hover {
+.default >>> a:hover {
     background-color: #535659;
 }
-.btn >>> a.conversion {
+.primary >>> a {
     background-color: #e12885;
     box-shadow: inset 0 -3px 0 0 #b4206a;
 }
-.btn >>> a.conversion:hover {
+.primary >>> a:hover {
     background-color: #ee7fb7;
 }
 </style>

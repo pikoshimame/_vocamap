@@ -6,8 +6,8 @@
                 イベントの新規登録は、以下より登録してください。
             </p>
             <div class="form">
-                <vmap-button class="btn">
-                    <a class="conversion" href="https://docs.google.com/forms/d/e/1FAIpQLScSL5GiJkJuQjPAS4qtUR0TuCOgJ6actvlZohD7nPbxUo8esQ/viewform?usp=pp_url&entry.912383164&entry.1875204912&entry.149526239&entry.363869672=%E5%85%AC%E9%96%8B" target="_blank">新規登録</a>
+                <vmap-button class="btn" :btnStyle="'primary'">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScSL5GiJkJuQjPAS4qtUR0TuCOgJ6actvlZohD7nPbxUo8esQ/viewform?usp=pp_url&entry.912383164&entry.1875204912&entry.149526239&entry.363869672=%E5%85%AC%E9%96%8B" target="_blank">新規登録</a>
                 </vmap-button>
             </div>
             <section class="sub">
@@ -65,8 +65,8 @@
                 その他のお問い合わせにつきましては、以下よりお問い合わせください。
             </p>
             <div class="form">
-                <vmap-button class="btn">
-                    <a class="conversion" href="https://docs.google.com/forms/d/e/1FAIpQLSfsC1oi-NOgwAf4mkoHdZRFX7G4SF7yO3vR-mscA1bwEaaWTw/viewform" target="_blank">お問い合わせ</a>
+                <vmap-button class="btn" :btnStyle="'primary'">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsC1oi-NOgwAf4mkoHdZRFX7G4SF7yO3vR-mscA1bwEaaWTw/viewform" target="_blank">お問い合わせ</a>
                 </vmap-button>
             </div>
         </section>
