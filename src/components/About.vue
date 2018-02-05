@@ -140,13 +140,13 @@ h3.title+.text {
     font-size: 12px;
     line-height: 1.5em;
     list-style: none;
-    text-indent: -1em;
-    padding-left: 1em;
+    text-indent: -1.2em;
+    padding-left: 1.2em;
     margin: 5px 0;
 }
 .notes >>> li::before {
-    content: "※";
-    margin-right: 0.5em;
+    content: "＊";
+    margin-right: 0.2em;
 }
 a {
     color: #e12885;

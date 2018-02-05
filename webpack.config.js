@@ -22,8 +22,8 @@ const DefinePluginConfig = new webpack.DefinePlugin({
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: path.join(__dirname, '/src/index.html'),
     inject: (process.env.NODE_ENV !== 'production'),
-    key: process.env.API_KEY,
-    isProduction: (process.env.NODE_ENV === 'production')
+    IS_PRODUCTION: (process.env.NODE_ENV === 'production'),
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID
 });
 const ScriptExtHtmlWebpackPluginConfig = new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'defer'

@@ -7,11 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{Favicon}">
     <title>VOCALOID CLUB&nbsp;EVENT&nbsp;MAP</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.GA_TRACKING_ID %>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '<%= htmlWebpackPlugin.options.GA_TRACKING_ID %>');
+    </script>
 </head>
 
 <body>
     <div id="app"></div>
-    <% if (htmlWebpackPlugin.options.isProduction) { %><script defer src="https://pikoshimame.github.io/vocamap/js/app.js"></script><% } %>
+    <% if (htmlWebpackPlugin.options.IS_PRODUCTION) { %><script defer src="https://pikoshimame.github.io/vocamap/js/app.js"></script><% } %>
 </body>
 
 </html>
