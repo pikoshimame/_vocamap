@@ -4,20 +4,16 @@
             <h2 class="title">Not Found</h2>
             <p class="text">The requested URL was not found on this server.</p>
         </section>
-        <div class="back">
-            <vmap-button class="btn">
-                <router-link to="/">TOPへ</router-link>
-            </vmap-button>
-        </div>
+        <vmap-link-area :areaStyle="'clear'" :to="'/'" :text="'MAPへ戻る'" />
     </div>
 </template>
 
 <script>
-import VmapButton from './Button';
+import VmapLinkArea from './LinkArea';
 
 export default {
     name: 'VmapNotFound',
-    components: { VmapButton }
+    components: { VmapLinkArea }
 };
 </script>
 

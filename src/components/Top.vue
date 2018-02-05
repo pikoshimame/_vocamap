@@ -1,16 +1,16 @@
 <template>
     <div>
         <vmap-map />
-        <vmap-register />
+        <vmap-link-area :to="'about'" :text="'イベントを登録する'" />
     </div>
 </template>
 
 <script>
 import VmapMap from './Map';
-import VmapRegister from './Register';
+import VmapLinkArea from './LinkArea';
 
 export default {
     name: 'VmapTop',
-    components: { VmapMap, VmapRegister }
+    components: { VmapMap, VmapLinkArea }
 };
 </script>
