@@ -26,6 +26,13 @@ export default {
     transition: 0.3s background-color;
 }
 .btn >>> a:hover {
-    background-color: #494f52;
+    background-color: #535659;
+}
+.btn >>> a.conversion {
+    background-color: #e12885;
+    box-shadow: inset 0 -3px 0 0 #b4206a;
+}
+.btn >>> a.conversion:hover {
+    background-color: #ee7fb7;
 }
 </style>
