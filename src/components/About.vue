@@ -117,7 +117,7 @@ export default {
 .back {
     background-color: #137a7f;
     text-align: center;
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 .back >>> .btn {
     display: inline-block;

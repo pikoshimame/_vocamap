@@ -9,12 +9,11 @@
 <script>
 import 'normalize.css';
 import VmapHeader from './Header';
-import VmapTop from './Top';
 import VmapFooter from './Footer';
 
 export default {
     name: 'VmapApp',
-    components: { VmapHeader, VmapTop, VmapFooter }
+    components: { VmapHeader, VmapFooter }
 };
 </script>
 

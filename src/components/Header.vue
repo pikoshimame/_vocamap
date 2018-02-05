@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style scoped>
-/* ヘッダー */
 .header {
     text-align: center;
     background-color: #373b3e;

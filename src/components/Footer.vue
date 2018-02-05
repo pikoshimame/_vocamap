@@ -15,7 +15,7 @@ export default {
     text-align: center;
     background-color: #373b3e;
     color: #fff;
-    padding: 24px 0;
+    padding: 20px 0;
 }
 .copy {
     font-size: 12px;
