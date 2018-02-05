@@ -10,7 +10,7 @@ import VmapMap from './Map';
 import VmapRegister from './Register';
 
 export default {
-    name: 'App',
+    name: 'VmapTop',
     components: { VmapMap, VmapRegister }
 };
 </script>

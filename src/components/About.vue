@@ -70,9 +70,11 @@
                 </vmap-button>
             </div>
         </section>
-        <vmap-button class="back">
-            <router-link to="/">MAPへ戻る</router-link>
-        </vmap-button>
+        <div class="back">
+            <vmap-button class="btn">
+                <router-link to="/">MAPへ戻る</router-link>
+            </vmap-button>
+        </div>
     </div>
 </template>
 
@@ -80,7 +82,7 @@
 import VmapButton from './Button';
 
 export default {
-    name: 'About',
+    name: 'VmapAbout',
     components: { VmapButton }
 };
 </script>
@@ -114,10 +116,11 @@ export default {
 }
 .back {
     background-color: #137a7f;
+    text-align: center;
     padding: 50px 0;
 }
-.back >>> a {
-    margin: 0 auto;
+.back >>> .btn {
+    display: inline-block;
 }
 h2.title {
     border-bottom: #bec8d1 solid 1px;

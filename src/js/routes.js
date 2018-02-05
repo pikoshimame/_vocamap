@@ -1,7 +1,9 @@
-import Top from '../components/Top';
-import About from '../components/About';
+import VmapTop from '../components/Top';
+import VmapAbout from '../components/About';
+import VmapNotFound from '../components/NotFound';
 
 export default [
-    { path: '/', component: Top },
-    { path: '/about', component: About }
+    { path: '/', component: VmapTop },
+    { path: '/about', component: VmapAbout },
+    { path: '*', component: VmapNotFound }
 ];

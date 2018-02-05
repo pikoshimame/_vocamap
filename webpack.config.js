@@ -71,7 +71,12 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: 'app'
+        contentBase: 'app',
+        historyApiFallback: {
+            rewrites: [
+                { from: /.*/, to: '/index.html' },
+            ],
+        },
     },
 
     plugins: [

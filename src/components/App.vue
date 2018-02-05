@@ -1,11 +1,9 @@
 <template>
-    <div id="app">
-        <section>
-            <vmap-header />
-            <router-view></router-view>
-            <vmap-footer />
-        </section>
-    </div>
+    <section>
+        <vmap-header />
+        <router-view></router-view>
+        <vmap-footer />
+    </section>
 </template>
 
 <script>
@@ -15,7 +13,7 @@ import VmapTop from './Top';
 import VmapFooter from './Footer';
 
 export default {
-    name: 'App',
+    name: 'VmapApp',
     components: { VmapHeader, VmapTop, VmapFooter }
 };
 </script>
@@ -25,6 +23,12 @@ export default {
 
 html, body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+html {
+    background-color: #373b3e;
+}
+body {
+    background-color: #fff;
 }
 iframe.tmblr-iframe {
     display: none;
